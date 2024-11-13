@@ -3,7 +3,6 @@ import mysql.connector
 
 # run stramlit
 # python -m streamlit run your_script.py
-# python -m streamlit run 'c:\Users\YXQia\OneDrive\Documents\IIT assignments\Fourth Year (First)\IPRO 497\demo.py'
 
 # connect database (db)
 mydb = mysql.connector.connect(
@@ -56,6 +55,8 @@ elif press is True and repsw == '':
     st.write("Confirm password can't be empty")
 elif press is True and psw != repsw:
     st.write("Confirm password doesn't match")
+elif press is True and email in existEmails:
+    st.write("This email has already registered")
 elif press is True and email != '' and userName != '' and psw != '' and repsw != '':
     cur.execute("insert into edrive.user_info (user_emails, user_names, pswd, driving_hour) \
                  values (%s, %s, %s, '0');", (email, userName, repsw))
